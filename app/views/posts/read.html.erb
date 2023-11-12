@@ -1,0 +1,28 @@
+<h1><%= @post.title%></h1>
+    <%= @post.body%>
+
+<h2>tags</h2>
+    <%= @post.tags%>
+
+<br>
+<br>
+<% if @post.user_id == @user.id %>
+ <%= link_to 'Edit Post', update_post_path(@post) %> |
+   <%end%>
+ <%# <%= link_to 'Back', posts_path %>
+
+
+<h2>Comments</h2>
+<%= render "comments/commentForm", comment: @comment%>
+<br>
+
+ <% @post.comments.each do |comment|%>
+ <% user = User.find(comment.user_id)%>
+ <%= user.name %>
+ <%= "says: "%>
+   <%= comment.body%>
+   <% if comment.user_id == @user.id %>
+     <%= link_to 'Edit Comment', update_comments_path(comment) %> |
+   <%end%>
+   <br>
+<% end %>

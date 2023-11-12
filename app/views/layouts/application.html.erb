@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlogApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% if $token %>
+      <%= link_to "Home", home_path %>
+      <%= link_to "profile", read_users_path %>
+      <%= button_to "log out", action: "logoutRequest", controller: "sessions" %>
+    <%end%>
+    <%= yield %>
+  </body>
+</html>

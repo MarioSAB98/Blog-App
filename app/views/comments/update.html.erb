@@ -1,0 +1,21 @@
+<h1>Update Comment Info</h1>
+
+<%= form_with model: @comment do |form|%>
+
+<% if form.object.errors.any? %>
+    <div>
+        <% form.object.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+        <%end%>
+    </div>
+<%end%>
+
+    <div>
+        <%= form.label :body %>
+        <%= form.text_area :body %>
+    </div>
+
+    <%= form.button %>
+<%end%>
+
+<%= button_to "Delete", @comment, method: :delete, data: {turbo_confirm: "Are you sure you want to delete this comment?"}%>
