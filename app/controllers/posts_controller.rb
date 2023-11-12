@@ -14,6 +14,7 @@ class PostsController < ApplicationController
         user_id = decoded_token[0]['user_id']
         @post = Post.new(post_fields.merge(user_id: user_id))
         if @post.save
+            PostCleanupWorkerJob.perform_in(24.hours, @post.id)
             redirect_to read_post_path(@post.id)
         else
             render :create,
