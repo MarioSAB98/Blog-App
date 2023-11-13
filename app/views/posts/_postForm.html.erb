@@ -1,27 +1,45 @@
 <%= form_with model: @post do |form|%>
 
-<% if form.object.errors.any? %>
-    <div>
-        <% form.object.errors.full_messages.each do |message| %>
-        <div><%= message %></div>
-        <%end%>
-    </div>
-<%end%>
+    <% if form.object.errors.any? %>
+        <div>
+            <% form.object.errors.full_messages.each do |message| %>
+                <div class= "bg-slate-700 rounded-full mb-4">
+                    <div class="text-yellow-50 ml-4"><%= message %></div>
+                </div>
+            <%end%>
+        </div>
+    <%end%>
 
-    <div>
-        <%= form.label :title %>
-        <%= form.text_field :title %>
+    <div class= "grid grid-rows-3 grid-cols-2">
+
+        <div>
+            <%= form.label :title %>
+        </div>
+
+        <div>
+            <%= form.text_field :title %>
+        </div>
+
+        <div>
+            <%= form.label :body %>
+        </div>
+
+        <div>
+            <%= form.text_area :body, class: "w-[250px]" %>
+        </div>
+
+        <div>
+            <%= form.label :tags %>
+        </div>
+
+        <div>
+            <%= form.text_area :tags, class: "w-[250px]" %>
+        </div>
+
     </div>
 
-    <div>
-        <%= form.label :body %>
-        <%= form.text_area :body %>
+    <div class= "mt-4 w-32 focus:outline-none text-white bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 m-2 dark:focus:ring-slate-900">
+        <%= form.button %>
     </div>
 
-    <div>
-        <%= form.label :tags %>
-        <%= form.text_area :tags %>
-    </div>
-
-    <%= form.button %>
 <%end%>

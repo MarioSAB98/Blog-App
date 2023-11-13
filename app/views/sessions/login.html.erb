@@ -1,16 +1,30 @@
-<h1>Log In</h1>
+<h1 class= "text-slate-700">Log In</h1>
 
 <%= form_with scope: :session, url: login_path do |form| %>
 
-    <div>
-        <%= form.label :email %>
-        <%= form.email_field :email %>
+    <div class= "grid grid-rows-4 grid-cols-2">
+
+        <div>
+            <%= form.label :email %>
+        </div>
+
+        <div>
+            <%= form.email_field :email %>
+        </div>
+
+        <div>
+            <%= form.label :password %>
+        </div>
+
+        <div>
+            <%= form.password_field :password %>
+        </div>
+
     </div>
 
-    <div>
-        <%= form.label :password %>
-        <%= form.password_field :password %>
+<div class="flex justify-center">
+    <div class= "w-fit focus:outline-none text-white bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 m-2 dark:focus:ring-slate-900">
+        <%= form.button "Log in" %>
     </div>
-
-    <%= form.button "Log in" %>
+    </div>
 <%end%>

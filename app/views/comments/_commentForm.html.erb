@@ -1,17 +1,16 @@
 <%= form_with model: @comment do |form|%>
 
-<% if form.object.errors.any? %>
-    <div>
-        <% form.object.errors.full_messages.each do |message| %>
-        <div><%= message %></div>
-        <%end%>
-    </div>
-<%end%>
 
-    <div>
-        <%= form.label :body %>
-        <%= form.text_area :body %>
+    <div class= "grid grid-flow-row-dense grid-rows-1 grid-cols-5 ml-4">
+
+        <div class="col-span-4">
+            <%= form.text_area :body, class: "w-full" %>
+        </div>
+
+        <div>
+            <%= button_to "comment", {action: "createRequest", controller: "comments"}, {class: "focus:outline-none text-white bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 m-2 dark:focus:ring-slate-900"} %>
+        </div>
+
     </div>
 
-      <%= button_to "comment", action: "createRequest", controller: "comments" %>
 <%end%>

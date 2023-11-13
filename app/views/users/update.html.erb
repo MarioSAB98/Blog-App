@@ -1,4 +1,4 @@
-<h1>Update User Info</h1>
+<h1 class= "text-slate-700">Update User Info</h1>
 
 <%= render partial: "userForm", locals: {user: @user}%>
-<%= button_to "Delete", @user, method: :delete, data: {turbo_confirm: "Are you sure you want to delete your profile?"}%>
+<%= button_to "Delete User", @user, method: :delete, data: {turbo_confirm: "Are you sure you want to delete your profile?"}, class: "w-32 focus:outline-none text-white bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 m-2 dark:focus:ring-slate-900"%>

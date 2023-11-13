@@ -1,10 +1,14 @@
-<h1>My Blog</h1>
+<h1 class= "text-slate-700">My Blog</h1>
 
-<%= link_to "Create Post", create_post_path %>
+<div class= "flex justify-end">
+    <div class= "flex flex-col">
+        <%= link_to "Create Post", create_post_path, class: "text-slate-700" %>
+    </div>
+</div>
 
 <% @posts.each do |post| %>
-<div>
-    <h2><%= link_to post.title, read_post_path(post.id) %></h2>
-    <%= post.body%>
-</div>
+    <div class= "bg-slate-700 mt-4 rounded-xl">
+        <h2 class= "mt-4"><%= link_to post.title, read_post_path(post.id), class: "text-yellow-50 ml-5" %></h2>
+        <h4 class= "text-yellow-50 ml-5 mb-8 font-normal italic"><%= post.body%></h4>
+    </div>
 <% end %>

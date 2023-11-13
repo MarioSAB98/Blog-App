@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     def createRequest
         @user = User.new(user_fields)
         if @user.save
-            redirect_to read_users_path
+            redirect_to root_path
         else
             render :create,
             status: :unprocessable_entity

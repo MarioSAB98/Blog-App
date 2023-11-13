@@ -1,32 +1,53 @@
 <%= form_with model: @user do |form|%>
 
-<% if form.object.errors.any? %>
-<div>
-<% form.object.errors.full_messages.each do |message| %>
-<div><%= message %></div>
-<%end%>
-</div>
-<%end%>
+    <% if form.object.errors.any? %>
+        <div>
+            <% form.object.errors.full_messages.each do |message| %>
+                <div class= "bg-slate-700 rounded-full mb-4">
+                    <div class="text-yellow-50 ml-4"><%= message %></div>
+                </div>
+            <%end%>
+        </div>
+    <%end%>
 
-    <div>
-        <%= form.label :name %>
-        <%= form.text_field :name %>
+    <div class= "grid grid-rows-4 grid-cols-2">
+        <div>
+            <%= form.label :name %>
+        </div>
+
+        <div>
+            <%= form.text_field :name %>
+        </div>
+
+        <div>
+            <%= form.label :email %>
+        </div>
+
+        <div>
+            <%= form.email_field :email %>
+        </div>
+
+        <div>
+            <%= form.label :password %>
+        </div>
+
+        <div>
+            <%= form.password_field :password %>
+        </div>
+
+        <div>
+            <%= form.label :image %>
+        </div>
+
+        <div>
+            <%= form.text_field :image %>
+        </div>
+
+    </div>
+<div class="flex justify-center">
+    <div class= "mt-4 w-fit focus:outline-none text-white bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 m-2 dark:focus:ring-slate-900">
+        <%= form.button "Sign up" %>
+    </div>
     </div>
 
-    <div>
-        <%= form.label :email %>
-        <%= form.email_field :email %>
-    </div>
-
-    <div>
-        <%= form.label :password %>
-        <%= form.password_field :password %>
-    </div>
-
-    <div>
-        <%= form.label :image %>
-        <%= form.text_field :image %>
-    </div>
-
-    <%= form.button %>
 <%end%>

@@ -11,14 +11,18 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="prose mx-auto">
+  <body class="prose mx-auto flex flex-col bg-yellow-100">
     <% if $token %>
-      <%= link_to "Home", home_path %>
-      <%= link_to "profile", read_users_path %>
-      <%= button_to "log out", action: "logoutRequest", controller: "sessions" %>
-      <% else %>
-      <%= link_to "Sign Up", create_user_path %>
-      <%= link_to "Log In", root_path %>
+      <div  class= "flex justify-end">
+        <%= link_to "Home", home_path, class: "text-slate-700 m-2" %>
+        <%= link_to "profile", read_users_path, class: "text-slate-700 m-2" %>
+        <%= button_to "log out", {action: "logoutRequest", controller: "sessions"}, {class: "focus:outline-none text-white bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 m-2 dark:focus:ring-slate-900"} %>
+      </div>
+    <% else %>
+      <div class= "flex justify-end">
+        <%= link_to "Sign Up", create_user_path, class: "text-slate-700 m-2" %>
+        <%= link_to "Log In", root_path, class: "text-slate-700 m-2" %>
+      </div>
     <%end%>
     <%= yield %>
   </body>
