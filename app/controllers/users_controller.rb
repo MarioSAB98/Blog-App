@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorized
+    before_action :authorized, except: [:create, :createRequest]
     
     def index
         @users = User.all
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     def createRequest
         @user = User.new(user_fields)
         if @user.save
-            redirect_to read_user_path(@user.id)
+            redirect_to read_users_path
         else
             render :create,
             status: :unprocessable_entity
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         @user
         @posts = @user.posts
         rescue ActiveRecord::RecordNotFound
-            redirect_to root_path
+            redirect_to home_path
     end
 
     def update

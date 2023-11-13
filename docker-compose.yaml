@@ -5,25 +5,41 @@ services:
         ports:
             - "6379:6379"
 
+    sidekiq:
+        build: .
+        command: bundle exec sidekiq
+        environment:
+            - RAILS_ENV=production
+            - POSTGRES_HOST=db
+            - POSTGRES_DB=blog_app_production
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=260198
+            - RAILS_MASTER_KEY=067e1610b0238d5388625a2cc1c1b679
+        depends_on:
+            - redis
+        volumes:
+            - app-storage:/rails/storage
+
     db:
         image: postgres:14.2-alpine
-        container_name: blog-app-db
+        container_name: blog_app_development
         volumes:
             - postgres_data:/var/lib/postgresql/data
         command: "postgres -c 'max_connections=500'"
         environment:
-            - POSTGRES_DB=blog_app_development
+            - POSTGRES_DB=blog_app_production
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=260198
+            - POSTGRES_HOST_AUTH_METHOD=trust
         ports:
             - "5432:5432"
     blog-app:
         build: .
-        command: "./bin/dev"
+        command: "./bin/rails server"
         environment:
-            - RAILS_ENV=development
+            - RAILS_ENV=production
             - POSTGRES_HOST=db
-            - POSTGRES_DB=blog_app_development
+            - POSTGRES_DB=blog_app_production
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=260198
             - RAILS_MASTER_KEY=067e1610b0238d5388625a2cc1c1b679
@@ -31,6 +47,7 @@ services:
             - app-storage:/rails/storage
         depends_on:
             - db
+            - sidekiq
         ports:
             - "3000:3000"
 

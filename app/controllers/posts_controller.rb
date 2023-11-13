@@ -26,7 +26,7 @@ class PostsController < ApplicationController
         @comment = Comment.new
         @post = Post.find(params[:id])
         rescue ActiveRecord::RecordNotFound
-            redirect_to root_path
+            redirect_to home_path
     end
 
     def update
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     def deleteRequest
         @post = Post.find(params[:id])
         @post.destroy
-        redirect_to root_path
+        redirect_to home_path
     end
 
     def show

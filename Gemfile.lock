@@ -82,6 +82,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
+    brpoplpush-redis_script (0.1.3)
+      concurrent-ruby (~> 1.0, >= 1.0.5)
+      redis (>= 1.0, < 6)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -102,6 +105,11 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
+    fugit (1.9.0)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -153,6 +161,7 @@ GEM
     public_suffix (5.0.3)
     puma (6.4.0)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.7.3)
     rack (3.0.8)
     rack-cors (2.0.1)
@@ -196,6 +205,8 @@ GEM
     rake (13.1.0)
     rdoc (6.6.0)
       psych (>= 4.0.0)
+    redis (5.0.8)
+      redis-client (>= 0.17.0)
     redis-client (0.18.0)
       connection_pool
     regexp_parser (2.8.2)
@@ -204,6 +215,8 @@ GEM
     rexml (3.2.6)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    rufus-scheduler (3.9.1)
+      fugit (~> 1.1, >= 1.1.6)
     selenium-webdriver (4.15.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -213,6 +226,15 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.14.0)
+    sidekiq-scheduler (5.0.3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 6, < 8)
+      tilt (>= 1.4.0)
+    sidekiq-unique-jobs (8.0.5)
+      brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
+      concurrent-ruby (~> 1.0, >= 1.0.5)
+      sidekiq (>= 7.0.0, < 8.0.0)
+      thor (>= 1.0, < 3.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -228,6 +250,7 @@ GEM
     tailwindcss-rails (2.0.32-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.3.0)
+    tilt (2.3.0)
     timeout (0.4.1)
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
@@ -269,6 +292,8 @@ DEPENDENCIES
   rails (~> 7.1.1)
   selenium-webdriver
   sidekiq
+  sidekiq-scheduler
+  sidekiq-unique-jobs
   sprockets-rails
   stimulus-rails
   tailwindcss-rails (~> 2.0)
