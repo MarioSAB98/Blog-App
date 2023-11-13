@@ -41,12 +41,14 @@ class UsersController < ApplicationController
 
     def deleteRequest
         @user.destroy
-        $token = nil
+        $loggedin = 0
+        cookies.delete(:auth)
         redirect_to root_path
     end
 
     def logoutRequest
-        $token = nil
+        $loggedin = 0
+        cookies.delete(:auth)
         redirect_to root_path
     end
 

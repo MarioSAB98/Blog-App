@@ -5,17 +5,24 @@ class SessionsController < ApplicationController
         @user = User.find_by(email: params[:session][:email])
 
         if @user && @user.authenticate(params[:session][:password])
-            $token = encode_token({user_id: @user.id})
-            redirect_to home_path
+            token = encode_token({user_id: @user.id})
+            cookies[:auth] = {
+                :value => token,
+                :expires => 1.year.from_now
+              }
+              $loggedin = 1
+              redirect_to home_path
         else
             render json: {error: "Invalid email or password"}, status: 422
         end
     end
 
     def logoutRequest
-        $token = nil
+        $loggedin = 0
+        cookies.delete(:auth)
         redirect_to root_path
-    end   
+    end  
+    
 
     private
 

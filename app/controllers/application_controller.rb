@@ -8,9 +8,10 @@ class ApplicationController < ActionController::Base
     end
 
     def decoded_token
-        if $token
+        token = cookies['auth']
+        if token
             begin
-                JWT.decode($token, 'MySecret', true, algorithm: 'HS256')
+                JWT.decode(token, 'MySecret', true, algorithm: 'HS256')
                 rescue JWT::DecodeError
                     nil
             end
